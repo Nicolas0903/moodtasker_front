@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'pages/courses_page.dart';
 import 'pages/history_page.dart';
 import 'pages/alerts_page.dart';
+<<<<<<< Updated upstream
 import 'pages/register_page.dart';
 import 'pages/new_task_page.dart';
+=======
+import 'pages/proyects_page.dart';
+>>>>>>> Stashed changes
 
 void main() {
   runApp(const MoodTaskerApp());
@@ -46,6 +50,7 @@ class _HomePageState extends State<HomePage> {
     CoursesPage(),
     HistoryPage(),
     AlertsPage(),
+    ProyectsPage(),
   ];
 
   final List<IconData> _icons = const [
@@ -58,6 +63,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_currentIndex],
+<<<<<<< Updated upstream
 
       // ✅ Botón flotante para registrar nueva tarea
       floatingActionButton: FloatingActionButton(
@@ -87,6 +93,21 @@ class _HomePageState extends State<HomePage> {
             );
           }),
         ),
+=======
+      bottomNavigationBar:  BottomNavigationBar(
+        currentIndex: _currentIndex,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        backgroundColor: Colors.green,
+        onTap: (index) => setState(() => _currentIndex = index),
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: ''),
+
+        ],
+>>>>>>> Stashed changes
       ),
     );
   }
