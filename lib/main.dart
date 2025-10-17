@@ -8,6 +8,7 @@ import 'pages/new_task_page.dart';
 =======
 import 'pages/proyects_page.dart';
 >>>>>>> Stashed changes
+import 'pages/proyects_page.dart';
 
 void main() {
   runApp(const MoodTaskerApp());
@@ -57,6 +58,7 @@ class _HomePageState extends State<HomePage> {
     Icons.home,
     Icons.bar_chart,
     Icons.notifications,
+    ProyectsPage(),
   ];
 
   @override
@@ -104,6 +106,8 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: ''),
+
           BottomNavigationBarItem(icon: Icon(Icons.book), label: ''),
 
         ],
