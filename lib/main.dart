@@ -28,6 +28,8 @@ class MoodTaskerApp extends StatelessWidget {
         '/register': (context) => const RegisterPage(),
         '/home': (context) => const HomePage(),
         '/newtask': (context) => const NewTaskPage(),
+        '/projects': (context) => const ProjectsPage(),
+
       },
     );
   }
@@ -71,7 +73,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
-         // BottomNavigationBarItem(icon: Icon(Icons.work), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.work), label: ''),
 
         ],
       ),
