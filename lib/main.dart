@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'pages/courses_page.dart';
 import 'pages/history_page.dart';
 import 'pages/alerts_page.dart';
-<<<<<<< Updated upstream
 import 'pages/register_page.dart';
 import 'pages/new_task_page.dart';
-=======
-import 'pages/proyects_page.dart';
->>>>>>> Stashed changes
-import 'pages/proyects_page.dart';
 
 void main() {
   runApp(const MoodTaskerApp());
@@ -51,51 +46,18 @@ class _HomePageState extends State<HomePage> {
     CoursesPage(),
     HistoryPage(),
     AlertsPage(),
-    ProyectsPage(),
   ];
 
   final List<IconData> _icons = const [
     Icons.home,
     Icons.bar_chart,
     Icons.notifications,
-    ProyectsPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_currentIndex],
-<<<<<<< Updated upstream
-
-      // ✅ Botón flotante para registrar nueva tarea
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.green,
-        onPressed: () {
-          Navigator.pushNamed(context, '/newtask');
-        },
-        child: const Icon(Icons.add, color: Colors.white),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-
-      // ✅ Barra inferior de navegación
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        color: Colors.green,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(_icons.length, (index) {
-            final isSelected = index == _currentIndex;
-            return IconButton(
-              onPressed: () => setState(() => _currentIndex = index),
-              icon: Icon(
-                _icons[index],
-                color: isSelected ? Colors.white : Colors.white70,
-              ),
-            );
-          }),
-        ),
-=======
       bottomNavigationBar:  BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedItemColor: Colors.white,
@@ -106,12 +68,9 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: ''),
 
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: ''),
 
         ],
->>>>>>> Stashed changes
       ),
     );
   }
