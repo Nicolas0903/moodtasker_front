@@ -4,8 +4,9 @@ import 'pages/history_page.dart';
 import 'pages/alerts_page.dart';
 import 'pages/register_page.dart';
 import 'pages/new_task_page.dart';
+import 'pages/projects_page.dart';
 
-void main() {
+void main () {
   runApp(const MoodTaskerApp());
 }
 
@@ -46,12 +47,14 @@ class _HomePageState extends State<HomePage> {
     CoursesPage(),
     HistoryPage(),
     AlertsPage(),
+    ProjectsPage(),
   ];
 
   final List<IconData> _icons = const [
     Icons.home,
     Icons.bar_chart,
     Icons.notifications,
+    Icons.work,
   ];
 
   @override
@@ -68,7 +71,7 @@ class _HomePageState extends State<HomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
-
+         // BottomNavigationBarItem(icon: Icon(Icons.work), label: ''),
 
         ],
       ),
