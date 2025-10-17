@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'pages/courses_page.dart';
 import 'pages/history_page.dart';
 import 'pages/alerts_page.dart';
+import 'pages/register_page.dart';
+import 'pages/new_task_page.dart';
 
 void main() {
   runApp(const MoodTaskerApp());
@@ -20,7 +22,12 @@ class MoodTaskerApp extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFF2FAF2),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      initialRoute: '/register',
+      routes: {
+        '/register': (context) => const RegisterPage(),
+        '/home': (context) => const HomePage(),
+        '/newtask': (context) => const NewTaskPage(),
+      },
     );
   }
 }
@@ -41,21 +48,45 @@ class _HomePageState extends State<HomePage> {
     AlertsPage(),
   ];
 
+  final List<IconData> _icons = const [
+    Icons.home,
+    Icons.bar_chart,
+    Icons.notifications,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _screens[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.white70,
+
+      // ✅ Botón flotante para registrar nueva tarea
+      floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
-        onTap: (index) => setState(() => _currentIndex = index),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.bar_chart), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
-        ],
+        onPressed: () {
+          Navigator.pushNamed(context, '/newtask');
+        },
+        child: const Icon(Icons.add, color: Colors.white),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
+      // ✅ Barra inferior de navegación
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        color: Colors.green,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: List.generate(_icons.length, (index) {
+            final isSelected = index == _currentIndex;
+            return IconButton(
+              onPressed: () => setState(() => _currentIndex = index),
+              icon: Icon(
+                _icons[index],
+                color: isSelected ? Colors.white : Colors.white70,
+              ),
+            );
+          }),
+        ),
       ),
     );
   }
