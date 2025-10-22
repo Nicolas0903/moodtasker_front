@@ -1,7 +1,71 @@
 import 'package:flutter/material.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final List<String> _courses = [
+    'Programación Web',
+    'Cálculo 1',
+    'Historia',
+  ];
+
+  Future<void> _showAddCourseDialog() async {
+    final controller = TextEditingController();
+
+    final result = await showDialog<String>(
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: const Text('Agregar curso'),
+          content: TextField(
+            controller: controller,
+            autofocus: true,
+            textInputAction: TextInputAction.done,
+            decoration: const InputDecoration(
+              hintText: 'Ej. Estadística II',
+              border: OutlineInputBorder(),
+            ),
+            onSubmitted: (_) => Navigator.of(ctx).pop(controller.text.trim()),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(),
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(ctx).pop(controller.text.trim()),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              child: const Text('Agregar'),
+            ),
+          ],
+        );
+      },
+    );
+
+    if (!mounted) return;
+
+    final value = (result ?? '').trim();
+
+    if (value.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Escribe un nombre de curso ')),
+      );
+      return;
+    }
+    if (_courses.map((e) => e.toLowerCase()).contains(value.toLowerCase())) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Ese curso ya está en la lista ')),
+      );
+      return;
+    }
+
+    setState(() => _courses.add(value));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +118,11 @@ class RegisterPage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
 
-              // Cursos
-              const CourseCheckbox(title: 'Programación Web'),
-              const CourseCheckbox(title: 'Cálculo 1'),
-              const CourseCheckbox(title: 'Historia'),
+              // Cursos dinámicos
+              ..._courses.map((c) => CourseCheckbox(title: c)).toList(),
 
               TextButton.icon(
-                onPressed: () {},
+                onPressed: _showAddCourseDialog,
                 icon: const Icon(Icons.add, color: Colors.green),
                 label: const Text(
                   'Agregar curso',
