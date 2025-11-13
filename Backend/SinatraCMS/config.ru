@@ -1,0 +1,5 @@
+require_relative 'controllers/application_controller'
+require_relative 'controllers/book_controller'
+
+use BookController
+run ApplicationController

@@ -1,0 +1,10 @@
+-- =============================================
+-- POBLADO INICIAL - TABLA Settings
+-- =============================================
+
+INSERT INTO Settings (id, notifsEnabled, checkinReminderDaily, checkinReminderHour, deadlineAlerts, usuarioId) VALUES
+    ('S001', 1, 1, 8, 1, 'U001'),   -- Leonardo: recordatorio diario a las 8 a.m.
+    ('S002', 1, 0, NULL, 1, 'U002'),-- María: sin recordatorios diarios
+    ('S003', 0, 0, NULL, 0, 'U003'),-- Carlos: desactivó notificaciones y alertas
+    ('S004', 1, 1, 18, 1, 'U004'),  -- Lucía: recordatorio diario a las 6 p.m.
+    ('S005', 1, 0, NULL, 1, 'U005');-- Andrés: solo alertas de deadlines

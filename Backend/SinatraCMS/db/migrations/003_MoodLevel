@@ -1,0 +1,8 @@
+-- =============================================
+-- POBLADO INICIAL - TABLA MoodLevel
+-- =============================================
+
+INSERT INTO MoodLevel (id, nivel) VALUES
+    ('ML01', 'BAJA'),
+    ('ML02', 'NEUTRA'),
+    ('ML03', 'ALTA');

@@ -1,0 +1,19 @@
+-- =============================================
+-- POBLADO INICIAL - TABLA Curso
+-- =============================================
+
+INSERT INTO Curso (id, nombre, usuarioId) VALUES
+    ('C001', 'Programación en Python', 'U001'),
+    ('C002', 'Redes y Comunicaciones', 'U001'),
+
+    ('C003', 'Introducción a la Psicología', 'U002'),
+    ('C004', 'Gestión de Proyectos', 'U002'),
+
+    ('C005', 'Estructuras de Datos', 'U003'),
+    ('C006', 'Sistemas Operativos', 'U003'),
+
+    ('C007', 'Diseño UX/UI', 'U004'),
+    ('C008', 'Desarrollo Web con React', 'U004'),
+
+    ('C009', 'Inteligencia Artificial', 'U005'),
+    ('C010', 'Bases de Datos Avanzadas', 'U005');

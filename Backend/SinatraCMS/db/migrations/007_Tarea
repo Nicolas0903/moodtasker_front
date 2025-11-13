@@ -1,0 +1,27 @@
+-- =============================================
+-- POBLADO INICIAL - TABLA Tarea
+-- =============================================
+
+INSERT INTO Tarea (
+    id, cursoId, settingsId, estadoId, titulo, deadline,
+    dificultadEstimada, energiaRequerida, createdAt, updatedAt
+) VALUES
+    -- Leonardo Peñafiel (U001)
+    ('T001', 'C001', 'S001', 'ET01', 'Resolver ejercicios de listas en Python', '2025-11-20 23:59:00', 3, 3, '2025-11-13 09:00:00', '2025-11-13 09:00:00'),
+    ('T002', 'C002', 'S001', 'ET02', 'Configurar router Cisco básico', '2025-11-18 22:00:00', 4, 4, '2025-11-13 09:10:00', '2025-11-13 09:10:00'),
+
+    -- María Torres (U002)
+    ('T003', 'C003', 'S002', 'ET03', 'Ensayo sobre teorías cognitivas', '2025-11-10 23:00:00', 2, 2, '2025-11-05 10:00:00', '2025-11-10 23:10:00'),
+    ('T004', 'C004', 'S002', 'ET01', 'Plan de proyecto: fases y responsables', '2025-11-22 21:00:00', 3, 3, '2025-11-13 10:20:00', '2025-11-13 10:20:00'),
+
+    -- Carlos Mendoza (U003)
+    ('T005', 'C005', 'S003', 'ET04', 'Implementar árbol binario', '2025-11-05 18:00:00', 5, 4, '2025-10-30 08:00:00', '2025-11-06 09:00:00'),
+    ('T006', 'C006', 'S003', 'ET01', 'Analizar procesos del sistema Linux', '2025-11-25 20:00:00', 4, 3, '2025-11-13 11:00:00', '2025-11-13 11:00:00'),
+
+    -- Lucía Ramos (U004)
+    ('T007', 'C007', 'S004', 'ET02', 'Prototipo de interfaz móvil', '2025-11-17 23:59:00', 3, 3, '2025-11-13 12:00:00', '2025-11-13 12:00:00'),
+    ('T008', 'C008', 'S004', 'ET03', 'Publicar miniportafolio en línea', '2025-11-10 18:00:00', 2, 2, '2025-11-08 09:00:00', '2025-11-10 18:30:00'),
+
+    -- Andrés Villanueva (U005)
+    ('T009', 'C009', 'S005', 'ET01', 'Leer paper sobre redes neuronales', '2025-11-21 23:59:00', 4, 3, '2025-11-13 08:00:00', '2025-11-13 08:00:00'),
+    ('T010', 'C010', 'S005', 'ET05', 'Cancelar práctica de SQL avanzada', NULL, 1, 1, '2025-11-13 09:00:00', '2025-11-13 09:00:00');

@@ -1,0 +1,10 @@
+-- =============================================
+-- POBLADO INICIAL - TABLA EstadoTarea
+-- =============================================
+
+INSERT INTO EstadoTarea (id, nombre) VALUES
+    ('ET01', 'Pendiente'),
+    ('ET02', 'En progreso'),
+    ('ET03', 'Completada'),
+    ('ET04', 'Atrasada'),
+    ('ET05', 'Cancelada');

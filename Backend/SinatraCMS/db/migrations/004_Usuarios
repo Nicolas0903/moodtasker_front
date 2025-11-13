@@ -1,0 +1,10 @@
+-- =============================================
+-- POBLADO INICIAL - TABLA Usuario
+-- =============================================
+
+INSERT INTO Usuario (id, nombre, createdAt) VALUES
+    ('U001', 'Leonardo Peñafiel', '2025-11-13 10:00:00'),
+    ('U002', 'María Torres', '2025-11-13 10:05:00'),
+    ('U003', 'Carlos Mendoza', '2025-11-13 10:10:00'),
+    ('U004', 'Lucía Ramos', '2025-11-13 10:15:00'),
+    ('U005', 'Andrés Villanueva', '2025-11-13 10:20:00');
