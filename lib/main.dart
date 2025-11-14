@@ -7,6 +7,7 @@ import 'pages/new_task_page.dart';
 import 'pages/projects_page.dart';
 import 'pages/mood_check_page.dart';
 import 'pages/tasks_list_page.dart';
+import 'pages/recommendations_page.dart';
 
 void main() {
   runApp(const MoodTaskerApp());
@@ -39,6 +40,7 @@ class MoodTaskerApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/newtask': (context) => const NewTaskPage(),
         '/projects': (context) => const ProjectsPage(),
+        '/recommendations': (context) => const RecommendationsPage(),
       },
     );
   }

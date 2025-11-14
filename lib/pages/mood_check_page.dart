@@ -18,14 +18,6 @@ class _MoodCheckPageState extends State<MoodCheckPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF2FAF2),
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.close, color: Colors.black87),
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
       body: Center(
         child: SingleChildScrollView(
           child: ConstrainedBox(
@@ -124,14 +116,9 @@ class _MoodCheckPageState extends State<MoodCheckPage> {
                     height: 46,
                     child: ElevatedButton(
                       onPressed: () {
-                        // TODO: aquí puedes navegar a una pantalla de recomendaciones
-                        // o devolver los valores al Home con Navigator.pop(context, {...})
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Generando recomendaciones…'),
-                          ),
-                        );
+                        Navigator.pushNamed(context, '/recommendations');
                       },
+
                       style: ElevatedButton.styleFrom(
                         backgroundColor: green,
                         shape: RoundedRectangleBorder(
