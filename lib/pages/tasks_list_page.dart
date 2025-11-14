@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'task_detail_page.dart';
 
 class TasksListPage extends StatefulWidget {
   const TasksListPage({super.key});
@@ -83,6 +84,36 @@ class _TasksListPageState extends State<TasksListPage> {
     });
   }
 
+  Future<void> _openTaskDetail(String course, int index) async {
+    final task = tasksByCourse[course]![index];
+
+    final completed = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(
+        builder: (_) => TaskDetailPage(
+          course: course,
+          taskTitle: task.title,
+          dateText: task.due != null
+              ? 'Entrega: ${task.due}'
+              : 'Entrega: No estimada',
+          stars: task.urgent
+              ? 5
+              : 1, // puedes ajustar la cantidad de estrellas si quieres
+        ),
+      ),
+    );
+
+    if (completed == true) {
+      setState(() {
+        tasksByCourse[course]!.removeAt(index);
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('¡Tarea marcada como realizada!')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,6 +159,7 @@ class _TasksListPageState extends State<TasksListPage> {
                         selectedIndices: selected,
                         onTapEdit: () => _toggleEditCourse(course),
                         onToggleSelect: (i) => _toggleSelect(course, i),
+                        onTapTask: (i) => _openTaskDetail(course, i),
                       );
                     }),
                     const SizedBox(height: 80),
@@ -215,6 +247,7 @@ class _CourseCard extends StatelessWidget {
   final Set<int> selectedIndices;
   final VoidCallback onTapEdit;
   final void Function(int index) onToggleSelect;
+  final void Function(int index) onTapTask;
   final int selectedCount;
 
   const _CourseCard({
@@ -224,6 +257,7 @@ class _CourseCard extends StatelessWidget {
     required this.selectedIndices,
     required this.onTapEdit,
     required this.onToggleSelect,
+    required this.onTapTask,
     required this.selectedCount,
   });
 
@@ -271,53 +305,55 @@ class _CourseCard extends StatelessWidget {
               final red = t.urgent ? Colors.red : const Color(0xFF3F7CD7);
               final selected = selectedIndices.contains(i);
 
-              return Column(
+              final rowContent = Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        t.urgent
-                            ? Icons.event_rounded
-                            : Icons.event_available_rounded,
-                        color: red,
-                        size: 22,
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              t.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
+                  Icon(
+                    t.urgent
+                        ? Icons.event_rounded
+                        : Icons.event_available_rounded,
+                    color: red,
+                    size: 22,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          t.title,
+                          style: const TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                        if (t.due != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2),
+                            child: Text(
+                              'Entrega: ${t.due}',
+                              style: TextStyle(
+                                color: t.urgent ? Colors.red : Colors.black54,
+                                fontSize: 12.5,
                               ),
                             ),
-                            if (t.due != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 2),
-                                child: Text(
-                                  'Entrega: ${t.due}',
-                                  style: TextStyle(
-                                    color: t.urgent
-                                        ? Colors.red
-                                        : Colors.black54,
-                                    fontSize: 12.5,
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ),
+                          ),
+                      ],
+                    ),
+                  ),
 
-                      // -------- Selector de borrado (solo en edición) --------
-                      if (editing)
-                        GestureDetector(
-                          onTap: () => onToggleSelect(i),
-                          child: _DeleteTick(selected: selected),
-                        ),
-                    ],
+                  // -------- Selector de borrado (solo en edición) --------
+                  if (editing)
+                    GestureDetector(
+                      onTap: () => onToggleSelect(i),
+                      child: _DeleteTick(selected: selected),
+                    ),
+                ],
+              );
+              return Column(
+                children: [
+                  InkWell(
+                    onTap: editing
+                        ? null
+                        : () => onTapTask(i), // 👈 solo si NO está editando
+                    child: rowContent,
                   ),
                   if (i != tasks.length - 1)
                     const Padding(
